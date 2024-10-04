@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:homework_test/src/main_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+void main() async {
+  await dotenv.load(fileName: ".env");
+  await EasyLocalization.ensureInitialized();
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en', 'US')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      child: const ProviderScope(child: MainWidget())));
 }
