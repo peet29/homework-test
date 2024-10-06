@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homework_test/src/core/route/route_name.dart';
 import 'package:homework_test/src/features/shopping/presentation/dashboard.dart';
+import 'package:homework_test/src/features/shopping/presentation/shopping_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'route_provider.g.dart';
@@ -28,7 +29,11 @@ GoRouter goRouter(GoRouterRef ref) {
                 name: shopping,
                 path: '/',
                 pageBuilder: (BuildContext context, GoRouterState state) {
-                  return const MaterialPage(child: Text("Shopping"));
+                  return NoTransitionPage(
+                    child: ShoppingScreen(
+                      key: state.pageKey,
+                    ),
+                  );
                 },
               ),
             ])
