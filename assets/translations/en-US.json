@@ -1,4 +1,8 @@
 {
     "shoppingLabel" : "Shopping",
-    "cartLabel" : "Cart"
+    "cartLabel" : "Cart",
+    "recommendProduct":"Recommend Product",
+    "latestProducts":"Latest Products",
+    "loading":"Loading..",
+    "unit":"unit"
 } 

@@ -47,4 +47,34 @@ class ShoppingController extends _$ShoppingController {
       ),
     );
   }
+
+  Future<void> getMoreProducts() async {
+    if (state.isLoadingMore) {
+      return;
+    }
+
+    state = state.copyWith(
+      isLoadingMore: true,
+    );
+
+    final result =
+        await ref.watch(shoppingServiceProvider).getProducts(state.cursor, 10);
+    final productList = state.latestProduct.valueOrNull;
+
+    result.when(
+      (value) {
+        state = state.copyWith(
+          latestProduct: AsyncValue.data([...?productList, ...value.items]),
+          cursor: value.nextCursor,
+        );
+      },
+      (failure) => state = state.copyWith(
+        latestProduct: AsyncValue.error(failure, StackTrace.current),
+      ),
+    );
+
+    state = state.copyWith(
+      isLoadingMore: false,
+    );
+  }
 }

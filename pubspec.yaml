@@ -46,3 +46,8 @@ flutter:
     - .env
     - assets/translations/
     - assets/images/
+
+flutter_gen:
+  output: lib/gen/
+  integrations:
+    flutter_svg: true
