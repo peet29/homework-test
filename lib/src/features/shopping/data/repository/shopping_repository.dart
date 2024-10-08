@@ -7,6 +7,14 @@ import 'package:homework_test/src/features/shopping/data/dto/checkout_request.da
 import 'package:homework_test/src/features/shopping/data/dto/get_product_response.dart';
 import 'package:homework_test/src/features/shopping/data/dto/product_response.dart';
 import 'package:homework_test/src/features/shopping/data/repository/ishopping_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'shopping_repository.g.dart';
+
+@Riverpod(keepAlive: true)
+ShoppingRepository shoppingRepository(ShoppingRepositoryRef ref) {
+  return ShoppingRepository(ref.watch(shoppingApiProvider));
+}
 
 class ShoppingRepository implements IShoppingRepository {
   final ShoppingApi _shoppingApi;

@@ -4,7 +4,15 @@ import 'package:homework_test/src/features/shopping/data/dto/checkout_request.da
 import 'package:homework_test/src/features/shopping/data/repository/shopping_repository.dart';
 import 'package:homework_test/src/features/shopping/domain/get_product_model.dart';
 import 'package:homework_test/src/features/shopping/domain/product_model.dart';
-import 'package:multiple_result/src/result.dart';
+import 'package:multiple_result/multiple_result.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'shopping_service.g.dart';
+
+@Riverpod(keepAlive: true)
+ShoppingService shoppingService(ShoppingServiceRef ref) {
+  return ShoppingService(ref.read(shoppingRepositoryProvider));
+}
 
 class ShoppingService implements IShoppingService {
   final ShoppingRepository _shoppingRepository;
