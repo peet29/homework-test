@@ -20,7 +20,7 @@ class ProductListItemWidget extends ConsumerWidget {
       title: Text(
         product.name,
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
           color: lightOnPrimaryContainer,
         ),
@@ -30,7 +30,7 @@ class ProductListItemWidget extends ConsumerWidget {
           Text(
             product.price.toStringAsFixed(2),
             style: const TextStyle(
-              fontSize: 24,
+              fontSize: 22,
               color: lightOnPrimaryContainer,
               fontWeight: FontWeight.w400,
             ),
@@ -38,12 +38,23 @@ class ProductListItemWidget extends ConsumerWidget {
           Text(
             " / ${context.tr('unit')}",
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: schemesSecondary,
               fontWeight: FontWeight.w500,
             ),
           )
         ],
+      ),
+      trailing: FilledButton(
+        onPressed: () {},
+        child: Text(
+          context.tr('addToCart'),
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.1,
+          ),
+        ),
       ),
     );
   }

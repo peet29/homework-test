@@ -29,16 +29,22 @@ class _RecommendProductWidgetState
           child: Text(
             context.tr('recommendProduct'),
             style: const TextStyle(
-              fontSize: 28,
+              fontSize: 22,
               fontWeight: FontWeight.w400,
             ),
           ),
+        ),
+        const SizedBox(
+          height: 18,
         ),
         ...product.mapIndexed((index, item) {
           return ProductListItemWidget(
             product: item,
           );
         }),
+        const SizedBox(
+          height: 18,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: Text(
@@ -46,10 +52,13 @@ class _RecommendProductWidgetState
               'latestProducts',
             ),
             style: const TextStyle(
-              fontSize: 28,
+              fontSize: 22,
               fontWeight: FontWeight.w400,
             ),
           ),
+        ),
+        const SizedBox(
+          height: 18,
         ),
       ],
     );

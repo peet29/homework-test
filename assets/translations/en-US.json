@@ -4,5 +4,6 @@
     "recommendProduct":"Recommend Product",
     "latestProducts":"Latest Products",
     "loading":"Loading..",
-    "unit":"unit"
+    "unit":"unit",
+    "addToCart":"Add to cart"
 } 

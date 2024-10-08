@@ -34,8 +34,10 @@ class _ShoppingScreenState extends ConsumerState<ShoppingScreen> {
   }
 
   void checkEndOfList() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+    final isEndList = scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 50;
+
+    if (isEndList) {
       ref.read(shoppingControllerProvider.notifier).getMoreProducts();
     }
   }
