@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:homework_test/src/core/route/route_name.dart';
 import 'package:homework_test/src/core/theme/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -20,6 +21,11 @@ class _BottomNavigationWidgetState
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      onTap: (value) {
+        if (value == 1) {
+          context.pushNamed(cart);
+        }
+      },
       backgroundColor: schemesSurfaceContainer,
       selectedItemColor: Colors.black,
       unselectedItemColor: schemesOnSurfaceVariant,

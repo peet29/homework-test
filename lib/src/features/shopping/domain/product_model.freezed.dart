@@ -23,7 +23,7 @@ mixin _$ProductModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  int? get quantity => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
 
   /// Serializes this ProductModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $ProductModelCopyWith<$Res> {
           ProductModel value, $Res Function(ProductModel) then) =
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
-  $Res call({int id, String name, double price, int? quantity});
+  $Res call({int id, String name, double price, int quantity});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? id = null,
     Object? name = null,
     Object? price = null,
-    Object? quantity = freezed,
+    Object? quantity = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -77,10 +77,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      quantity: freezed == quantity
+      quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
   }
 }
@@ -93,7 +93,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       __$$ProductModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, double price, int? quantity});
+  $Res call({int id, String name, double price, int quantity});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? price = null,
-    Object? quantity = freezed,
+    Object? quantity = null,
   }) {
     return _then(_$ProductModelImpl(
       id: null == id
@@ -127,10 +127,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      quantity: freezed == quantity
+      quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$ProductModelImpl implements _ProductModel {
       {required this.id,
       required this.name,
       required this.price,
-      this.quantity});
+      required this.quantity});
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
@@ -154,7 +154,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final double price;
   @override
-  final int? quantity;
+  final int quantity;
 
   @override
   String toString() {
@@ -198,7 +198,7 @@ abstract class _ProductModel implements ProductModel {
       {required final int id,
       required final String name,
       required final double price,
-      final int? quantity}) = _$ProductModelImpl;
+      required final int quantity}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
@@ -210,7 +210,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   double get price;
   @override
-  int? get quantity;
+  int get quantity;
 
   /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.

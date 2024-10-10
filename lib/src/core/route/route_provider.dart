@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homework_test/src/core/route/route_name.dart';
+import 'package:homework_test/src/features/cart/presentation/cart_screen.dart';
 import 'package:homework_test/src/features/shopping/presentation/dashboard.dart';
 import 'package:homework_test/src/features/shopping/presentation/shopping_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -29,7 +30,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 name: shopping,
                 path: '/',
                 pageBuilder: (BuildContext context, GoRouterState state) {
-                  return NoTransitionPage(
+                  return MaterialPage(
                     child: ShoppingScreen(
                       key: state.pageKey,
                     ),
@@ -42,7 +43,11 @@ GoRouter goRouter(GoRouterRef ref) {
         name: cart,
         path: '/$cart',
         pageBuilder: (BuildContext context, GoRouterState state) {
-          return const MaterialPage(child: Text("Cart"));
+          return MaterialPage(
+            child: CartScreen(
+              key: state.pageKey,
+            ),
+          );
         },
       ),
     ],
