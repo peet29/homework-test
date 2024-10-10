@@ -15,46 +15,65 @@ class ProductListItemWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListTile(
-      leading: Assets.images.productPlaceholder.image(),
-      title: Text(
-        product.name,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: lightOnPrimaryContainer,
-        ),
-      ),
-      subtitle: Row(
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+      child: Row(
         children: [
-          Text(
-            product.price.toStringAsFixed(2),
-            style: const TextStyle(
-              fontSize: 22,
-              color: lightOnPrimaryContainer,
-              fontWeight: FontWeight.w400,
+          Assets.images.productPlaceholder.image(),
+          const SizedBox(
+            width: 12,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                product.name,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: lightOnPrimaryContainer,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    product.price.toStringAsFixed(2),
+                    style: const TextStyle(
+                      fontSize: 22,
+                      color: lightOnPrimaryContainer,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    " / ${context.tr('unit')}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: schemesSecondary,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          const Spacer(),
+          SizedBox(
+            height: 40,
+            child: FilledButton(
+              onPressed: () {},
+              child: Text(
+                context.tr('addToCart'),
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.1,
+                ),
+              ),
             ),
           ),
-          Text(
-            " / ${context.tr('unit')}",
-            style: const TextStyle(
-              fontSize: 14,
-              color: schemesSecondary,
-              fontWeight: FontWeight.w500,
-            ),
-          )
         ],
-      ),
-      trailing: FilledButton(
-        onPressed: () {},
-        child: Text(
-          context.tr('addToCart'),
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 0.1,
-          ),
-        ),
       ),
     );
   }

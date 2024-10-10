@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:homework_test/src/features/shopping/presentation/widgets/product_list_item_loading_widget.dart';
 import 'package:homework_test/src/features/shopping/presentation/controller/shopping_controller.dart';
 import 'package:homework_test/src/features/shopping/presentation/widgets/product_list_item_widget.dart';
 
@@ -16,10 +17,8 @@ class _RecommendProductWidgetState
     extends ConsumerState<RecommendProductWidget> {
   @override
   Widget build(BuildContext context) {
-    final product =
-        ref.watch(shoppingControllerProvider).recommendedProduct.valueOrNull ??
-            [];
-
+    final recommendedProduct =
+        ref.watch(shoppingControllerProvider).recommendedProduct;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,10 +35,24 @@ class _RecommendProductWidgetState
         const SizedBox(
           height: 18,
         ),
-        ...product.map((item) {
-          return ProductListItemWidget(
-            product: item,
+        recommendedProduct.when(data: (data) {
+          return Column(
+            children: data
+                .map(
+                  (item) => ProductListItemWidget(
+                    product: item,
+                  ),
+                )
+                .toList(),
           );
+        }, error: (error, st) {
+          return Text(error.toString());
+        }, loading: () {
+          return Column(children: [
+            ...List.generate(4, (index) {
+              return const ProductListItemLoadingWidget();
+            }),
+          ]);
         }),
         const SizedBox(
           height: 18,

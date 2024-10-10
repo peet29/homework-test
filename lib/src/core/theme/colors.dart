@@ -6,3 +6,5 @@ const schemesOnSurfaceVariant = Color.fromRGBO(73, 69, 79, 1);
 
 const lightOnPrimaryContainer = Color.fromRGBO(33, 0, 93, 1);
 const schemesSecondary = Color.fromRGBO(98, 91, 113, 1);
+
+const shimmerColor = Color.fromRGBO(230, 224, 233, 1);
