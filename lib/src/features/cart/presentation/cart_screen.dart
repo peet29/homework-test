@@ -18,6 +18,15 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final products =
         ref.watch(cartControllerProvider.select((state) => state.products));
 
+    final subtotal =
+        ref.watch(cartControllerProvider.select((state) => state.subtotal));
+
+    final discount =
+        ref.watch(cartControllerProvider.select((state) => state.discount));
+
+    final total =
+        ref.watch(cartControllerProvider.select((state) => state.total));
+
     return SafeArea(
         bottom: false,
         top: false,
@@ -45,6 +54,82 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                 height: 163,
                 width: double.infinity,
                 color: schemesSecondaryContainer,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        Text(
+                          context.tr('subtotal'),
+                          style: const TextStyle(
+                            color: textColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          NumberFormat.currency(symbol: '').format(subtotal),
+                          style: const TextStyle(
+                            color: textColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          context.tr('promotion'),
+                          style: const TextStyle(
+                            color: textColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          '-${NumberFormat.currency(symbol: '').format(discount)}',
+                          style: const TextStyle(
+                            color: discountTextColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          NumberFormat.currency(symbol: '').format(total),
+                          style: const TextStyle(
+                            color: textColor,
+                            fontSize: 32,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 177,
+                          child: FilledButton(
+                            onPressed: () {},
+                            child: Text(
+                              context.tr('checkout'),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ]),
+                ),
               )
             ],
           ),

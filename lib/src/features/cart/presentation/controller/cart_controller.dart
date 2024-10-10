@@ -24,29 +24,45 @@ class CartController extends _$CartController {
       products:
           state.products.where((element) => element.id != product.id).toList(),
     );
+
+    upDateTotal();
   }
 
   void clearCart() {
     state = state.copyWith(products: []);
   }
 
+  void upDateTotal() {
+    state = state.copyWith(
+      subtotal: subtotal(),
+      discount: discount(),
+      total: subtotal() - discount(),
+    );
+  }
+
   void addQuantity(ProductModel product) {
     state = state.copyWith(
       products: state.products
-          .map((e) =>
-              e.id == product.id ? e.copyWith(quantity: e.quantity + 1) : e)
+          .map((e) => e.id == product.id && e.name == product.name
+              ? e.copyWith(quantity: e.quantity + 1)
+              : e)
           .toList(),
     );
+
+    upDateTotal();
   }
 
   void removeQuantity(ProductModel product) {
     state = state.copyWith(
       products: state.products
-          .map((e) =>
-              e.id == product.id ? e.copyWith(quantity: e.quantity - 1) : e)
+          .map((e) => e.id == product.id && e.name == product.name
+              ? e.copyWith(quantity: e.quantity - 1)
+              : e)
           .where((e) => e.quantity > 0)
           .toList(),
     );
+
+    upDateTotal();
   }
 
   Future<bool> checkout() async {

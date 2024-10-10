@@ -17,15 +17,14 @@ class ProductListItemWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final productInCart =
+    final productCartList =
         ref.watch(cartControllerProvider.select((state) => state.products));
 
-    final isProductInCart =
-        productInCart.any((element) => element.id == product.id);
-
-    final productQuantity = productInCart.firstWhereOrNull(
-      (element) => element.id == product.id,
+    final productInCart = productCartList.firstWhereOrNull(
+      (element) => element.id == product.id && element.name == product.name,
     );
+
+    final isProductInCart = productInCart != null;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
@@ -51,7 +50,7 @@ class ProductListItemWidget extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    product.price.toStringAsFixed(2),
+                    NumberFormat.currency(symbol: '').format(product.price),
                     style: const TextStyle(
                       fontSize: 22,
                       color: lightOnPrimaryContainer,
@@ -75,6 +74,8 @@ class ProductListItemWidget extends ConsumerWidget {
             Row(
               children: [
                 IconButton(
+                  style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(primaryColor)),
                   onPressed: () {
                     ref
                         .read(cartControllerProvider.notifier)
@@ -82,18 +83,24 @@ class ProductListItemWidget extends ConsumerWidget {
                   },
                   icon: const Icon(
                     Icons.remove,
-                    color: lightOnPrimaryContainer,
+                    color: Colors.white,
                   ),
                 ),
-                Text(
-                  productQuantity?.quantity.toString() ?? '',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: lightOnPrimaryContainer,
-                    fontWeight: FontWeight.w500,
+                SizedBox(
+                  width: 35,
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    productInCart.quantity.toString(),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 IconButton(
+                  style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(primaryColor)),
                   onPressed: () {
                     ref
                         .read(cartControllerProvider.notifier)
@@ -101,7 +108,7 @@ class ProductListItemWidget extends ConsumerWidget {
                   },
                   icon: const Icon(
                     Icons.add,
-                    color: lightOnPrimaryContainer,
+                    color: Colors.white,
                   ),
                 )
               ],
@@ -110,6 +117,8 @@ class ProductListItemWidget extends ConsumerWidget {
             SizedBox(
               height: 40,
               child: FilledButton(
+                style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(primaryColor)),
                 onPressed: () {
                   ref.read(cartControllerProvider.notifier).addProduct(product);
                 },

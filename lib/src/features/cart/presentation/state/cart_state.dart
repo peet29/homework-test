@@ -9,5 +9,8 @@ class CartState with _$CartState {
     @Default([]) List<ProductModel> products,
     @Default(false) bool isLoading,
     @Default(false) bool isSuccess,
+    @Default(0) double subtotal,
+    @Default(0) double discount,
+    @Default(0) double total,
   }) = _CartState;
 }

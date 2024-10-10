@@ -1,9 +1,12 @@
 {
-    "shoppingLabel" : "Shopping",
-    "cartLabel" : "Cart",
-    "recommendProduct":"Recommend Product",
-    "latestProducts":"Latest Products",
-    "loading":"Loading..",
-    "unit":"unit",
-    "addToCart":"Add to cart"
-} 
+  "shoppingLabel": "Shopping",
+  "cartLabel": "Cart",
+  "recommendProduct": "Recommend Product",
+  "latestProducts": "Latest Products",
+  "loading": "Loading..",
+  "unit": "unit",
+  "addToCart": "Add to cart",
+  "subtotal": "Subtotal",
+  "promotion": "Promotion discount",
+  "checkout": "Checkout"
+}

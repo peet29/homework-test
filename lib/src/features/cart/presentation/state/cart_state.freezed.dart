@@ -19,6 +19,9 @@ mixin _$CartState {
   List<ProductModel> get products => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
+  double get subtotal => throw _privateConstructorUsedError;
+  double get discount => throw _privateConstructorUsedError;
+  double get total => throw _privateConstructorUsedError;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +35,13 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<ProductModel> products, bool isLoading, bool isSuccess});
+  $Res call(
+      {List<ProductModel> products,
+      bool isLoading,
+      bool isSuccess,
+      double subtotal,
+      double discount,
+      double total});
 }
 
 /// @nodoc
@@ -53,6 +62,9 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
     Object? products = null,
     Object? isLoading = null,
     Object? isSuccess = null,
+    Object? subtotal = null,
+    Object? discount = null,
+    Object? total = null,
   }) {
     return _then(_value.copyWith(
       products: null == products
@@ -67,6 +79,18 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool,
+      subtotal: null == subtotal
+          ? _value.subtotal
+          : subtotal // ignore: cast_nullable_to_non_nullable
+              as double,
+      discount: null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -79,7 +103,13 @@ abstract class _$$CartStateImplCopyWith<$Res>
       __$$CartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductModel> products, bool isLoading, bool isSuccess});
+  $Res call(
+      {List<ProductModel> products,
+      bool isLoading,
+      bool isSuccess,
+      double subtotal,
+      double discount,
+      double total});
 }
 
 /// @nodoc
@@ -98,6 +128,9 @@ class __$$CartStateImplCopyWithImpl<$Res>
     Object? products = null,
     Object? isLoading = null,
     Object? isSuccess = null,
+    Object? subtotal = null,
+    Object? discount = null,
+    Object? total = null,
   }) {
     return _then(_$CartStateImpl(
       products: null == products
@@ -112,6 +145,18 @@ class __$$CartStateImplCopyWithImpl<$Res>
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool,
+      subtotal: null == subtotal
+          ? _value.subtotal
+          : subtotal // ignore: cast_nullable_to_non_nullable
+              as double,
+      discount: null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -122,7 +167,10 @@ class _$CartStateImpl implements _CartState {
   const _$CartStateImpl(
       {final List<ProductModel> products = const [],
       this.isLoading = false,
-      this.isSuccess = false})
+      this.isSuccess = false,
+      this.subtotal = 0,
+      this.discount = 0,
+      this.total = 0})
       : _products = products;
 
   final List<ProductModel> _products;
@@ -140,10 +188,19 @@ class _$CartStateImpl implements _CartState {
   @override
   @JsonKey()
   final bool isSuccess;
+  @override
+  @JsonKey()
+  final double subtotal;
+  @override
+  @JsonKey()
+  final double discount;
+  @override
+  @JsonKey()
+  final double total;
 
   @override
   String toString() {
-    return 'CartState(products: $products, isLoading: $isLoading, isSuccess: $isSuccess)';
+    return 'CartState(products: $products, isLoading: $isLoading, isSuccess: $isSuccess, subtotal: $subtotal, discount: $discount, total: $total)';
   }
 
   @override
@@ -155,12 +212,23 @@ class _$CartStateImpl implements _CartState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isSuccess, isSuccess) ||
-                other.isSuccess == isSuccess));
+                other.isSuccess == isSuccess) &&
+            (identical(other.subtotal, subtotal) ||
+                other.subtotal == subtotal) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
+            (identical(other.total, total) || other.total == total));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_products), isLoading, isSuccess);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      isLoading,
+      isSuccess,
+      subtotal,
+      discount,
+      total);
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -175,7 +243,10 @@ abstract class _CartState implements CartState {
   const factory _CartState(
       {final List<ProductModel> products,
       final bool isLoading,
-      final bool isSuccess}) = _$CartStateImpl;
+      final bool isSuccess,
+      final double subtotal,
+      final double discount,
+      final double total}) = _$CartStateImpl;
 
   @override
   List<ProductModel> get products;
@@ -183,6 +254,12 @@ abstract class _CartState implements CartState {
   bool get isLoading;
   @override
   bool get isSuccess;
+  @override
+  double get subtotal;
+  @override
+  double get discount;
+  @override
+  double get total;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
