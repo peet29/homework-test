@@ -1,6 +1,5 @@
 import 'package:homework_test/src/core/error/failure.dart';
 import 'package:homework_test/src/features/shopping/application/ishopping_service.dart';
-import 'package:homework_test/src/features/shopping/data/dto/checkout_request.dart';
 import 'package:homework_test/src/features/shopping/data/repository/shopping_repository.dart';
 import 'package:homework_test/src/features/shopping/domain/get_product_model.dart';
 import 'package:homework_test/src/features/shopping/domain/product_model.dart';
@@ -17,18 +16,6 @@ ShoppingService shoppingService(ShoppingServiceRef ref) {
 class ShoppingService implements IShoppingService {
   final ShoppingRepository _shoppingRepository;
   ShoppingService(this._shoppingRepository);
-
-  @override
-  Future<Result<void, Failure>> checkout() async {
-    try {
-      const request = CheckoutRequest(products: [0]);
-      final response = await _shoppingRepository.checkout(request);
-
-      return Success(response);
-    } on Failure catch (e) {
-      return Error(e);
-    }
-  }
 
   @override
   Future<Result<GetProductModel, Failure>> getProducts(

@@ -10,6 +10,4 @@ abstract interface class IShoppingService {
   );
 
   Future<Result<List<ProductModel>, Failure>> getRecommendedProduct();
-
-  Future<Result<void, Failure>> checkout();
 }

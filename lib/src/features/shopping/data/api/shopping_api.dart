@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:homework_test/src/core/network/network_service.dart';
-import 'package:homework_test/src/features/shopping/data/dto/checkout_request.dart';
 import 'package:homework_test/src/features/shopping/data/dto/get_product_response.dart';
 import 'package:homework_test/src/features/shopping/data/dto/product_response.dart';
 import 'package:retrofit/retrofit.dart';
@@ -26,7 +25,4 @@ abstract interface class ShoppingApi {
     @Query('cursor') String cursor,
     @Query('limit') int limit,
   );
-
-  @POST('/orders/checkout')
-  Future<void> checkout(@Body() CheckoutRequest request);
 }
