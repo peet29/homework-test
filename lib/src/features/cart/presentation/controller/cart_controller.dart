@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:homework_test/src/features/cart/application/cart_service.dart';
 import 'package:homework_test/src/features/cart/data/dto/checkout_request.dart';
 import 'package:homework_test/src/features/cart/presentation/state/cart_state.dart';
