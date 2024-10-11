@@ -28,7 +28,7 @@ class CartController extends _$CartController {
   }
 
   void clearCart() {
-    state = state.copyWith(products: []);
+    state = state.copyWith(products: [], isLoading: false, isSuccess: false);
   }
 
   void upDateTotal() {

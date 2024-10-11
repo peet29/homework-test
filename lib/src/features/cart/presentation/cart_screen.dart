@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:homework_test/src/core/theme/colors.dart';
 import 'package:homework_test/src/features/cart/presentation/controller/cart_controller.dart';
 import 'package:homework_test/src/features/cart/presentation/widgets/empty_cart.dart';
+import 'package:homework_test/src/features/cart/presentation/widgets/success_screen.dart';
 import 'package:homework_test/src/features/shopping/presentation/widgets/product_list_item_widget.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -42,11 +43,11 @@ class _CartScreenState extends ConsumerState<CartScreen> {
           ),
           body: Column(
             children: [
-              if (products.isEmpty) ...[
+              if (isSuccess) ...[
+                const Expanded(child: SuccessScreenWidget())
+              ] else if (products.isEmpty) ...[
                 const Expanded(child: EmptyCartWidget()),
-              ] else if (isSuccess)
-                ...[]
-              else ...[
+              ] else ...[
                 Expanded(
                   child: ListView.builder(
                     itemCount: products.length,
@@ -146,7 +147,28 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                           SizedBox(
                             width: 177,
                             child: FilledButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                final res = await ref
+                                    .read(cartControllerProvider.notifier)
+                                    .checkout();
+
+                                if (!res) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      showCloseIcon: true,
+                                      behavior: SnackBarBehavior.floating,
+                                      backgroundColor: discountTextColor,
+                                      content: Text(
+                                        context.tr('errorMessage'),
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
                               child: Text(
                                 context.tr('checkout'),
                                 style: const TextStyle(

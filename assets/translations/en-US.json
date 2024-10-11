@@ -12,5 +12,8 @@
   "errorMessage": "Something went wrong",
   "refresh": "Refresh",
   "emptyCart": "Empty Cart",
-  "goToShopping": "Go to shopping"
+  "goToShopping": "Go to shopping",
+  "success": "Success!",
+  "thankyouMessage" : "Thank you for shopping with us!",
+  "shopAgain": "Shop Again"
 }
