@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:homework_test/src/core/theme/colors.dart';
 import 'package:homework_test/src/features/cart/presentation/controller/cart_controller.dart';
 import 'package:homework_test/src/features/shopping/presentation/widgets/product_list_item_widget.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class CartScreen extends ConsumerStatefulWidget {
   const CartScreen({super.key});
@@ -43,6 +44,26 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   itemBuilder: (context, index) {
                     final product = products[index];
                     return Dismissible(
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          color: discountTextColor,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Icon(Symbols.delete, color: Colors.white),
+                              SizedBox(
+                                width: 106,
+                              )
+                            ],
+                          ),
+                        ),
+                        onDismissed: (direction) {
+                          ref
+                              .read(cartControllerProvider.notifier)
+                              .removeProduct(
+                                product,
+                              );
+                        },
                         key: Key(product.id.toString()),
                         child: ProductListItemWidget(
                           product: product,
