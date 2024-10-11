@@ -27,6 +27,10 @@ class CartController extends _$CartController {
     upDateTotal();
   }
 
+  void clearStatus() {
+    state = state.copyWith(isSuccess: false, isLoading: false);
+  }
+
   void clearCart() {
     state = state.copyWith(products: [], isLoading: false, isSuccess: false);
   }
@@ -71,7 +75,7 @@ class CartController extends _$CartController {
     final res = await ref.read(cartServiceProvider).checkbox(request);
 
     res.when((success) {
-      state = state.copyWith(isLoading: false, isSuccess: true);
+      state = state.copyWith(isLoading: false, isSuccess: true, products: []);
     }, (error) {
       state = state.copyWith(isLoading: false);
     });

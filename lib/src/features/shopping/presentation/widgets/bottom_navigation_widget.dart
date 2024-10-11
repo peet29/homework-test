@@ -37,6 +37,7 @@ class _BottomNavigationWidgetState
     return BottomNavigationBar(
       onTap: (value) {
         if (value == 1) {
+          ref.read(cartControllerProvider.notifier).clearStatus();
           context.pushNamed(cart);
         }
       },
