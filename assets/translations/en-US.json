@@ -10,5 +10,7 @@
   "promotion": "Promotion discount",
   "checkout": "Checkout",
   "errorMessage": "Something went wrong",
-  "refresh": "Refresh"
+  "refresh": "Refresh",
+  "emptyCart": "Empty Cart",
+  "goToShopping": "Go to shopping"
 }
