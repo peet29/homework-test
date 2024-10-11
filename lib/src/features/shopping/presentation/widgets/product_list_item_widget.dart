@@ -34,42 +34,46 @@ class ProductListItemWidget extends ConsumerWidget {
           const SizedBox(
             width: 12,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                product.name,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: lightOnPrimaryContainer,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    NumberFormat.currency(symbol: '').format(product.price),
-                    style: const TextStyle(
-                      fontSize: 22,
-                      color: lightOnPrimaryContainer,
-                      fontWeight: FontWeight.w400,
-                    ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  maxLines: 1,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: lightOnPrimaryContainer,
                   ),
-                  Text(
-                    " / ${context.tr('unit')}",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: schemesSecondary,
-                      fontWeight: FontWeight.w500,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      NumberFormat.currency(symbol: '').format(product.price),
+                      style: const TextStyle(
+                        fontSize: 22,
+                        color: lightOnPrimaryContainer,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  )
-                ],
-              ),
-            ],
+                    Text(
+                      " / ${context.tr('unit')}",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: schemesSecondary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           if (isProductInCart) ...[
             Row(
               children: [

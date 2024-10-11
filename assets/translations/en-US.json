@@ -8,5 +8,7 @@
   "addToCart": "Add to cart",
   "subtotal": "Subtotal",
   "promotion": "Promotion discount",
-  "checkout": "Checkout"
+  "checkout": "Checkout",
+  "errorMessage": "Something went wrong",
+  "refresh": "Refresh"
 }

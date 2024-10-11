@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:homework_test/src/core/theme/colors.dart';
 import 'package:homework_test/src/features/shopping/presentation/widgets/product_list_item_loading_widget.dart';
 import 'package:homework_test/src/features/shopping/presentation/controller/shopping_controller.dart';
 import 'package:homework_test/src/features/shopping/presentation/widgets/product_list_item_widget.dart';
@@ -20,15 +21,19 @@ class _RecommendProductWidgetState
     final recommendedProduct =
         ref.watch(shoppingControllerProvider).recommendedProduct;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16),
-          child: Text(
-            context.tr('recommendProduct'),
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
+          child: SizedBox(
+            width: double.infinity,
+            child: Text(
+              textAlign: TextAlign.start,
+              context.tr('recommendProduct'),
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
         ),
@@ -46,7 +51,31 @@ class _RecommendProductWidgetState
                 .toList(),
           );
         }, error: (error, st) {
-          return Text(error.toString());
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.cancel_outlined,
+                color: discountTextColor,
+                size: 57.17,
+              ),
+              Text(
+                context.tr('errorMessage'),
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              FilledButton(
+                  onPressed: () {
+                    ref
+                        .read(shoppingControllerProvider.notifier)
+                        .getRecommendedProduct();
+                  },
+                  child: Text(context.tr("refresh")))
+            ],
+          );
         }, loading: () {
           return Column(children: [
             ...List.generate(4, (index) {
@@ -59,13 +88,17 @@ class _RecommendProductWidgetState
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16),
-          child: Text(
-            context.tr(
-              'latestProducts',
-            ),
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
+          child: SizedBox(
+            width: double.infinity,
+            child: Text(
+              context.tr(
+                'latestProducts',
+              ),
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+              ),
+              textAlign: TextAlign.start,
             ),
           ),
         ),
