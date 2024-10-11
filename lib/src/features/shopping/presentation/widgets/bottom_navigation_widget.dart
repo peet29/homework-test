@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:homework_test/src/core/route/route_name.dart';
 import 'package:homework_test/src/core/theme/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:homework_test/src/features/cart/presentation/controller/cart_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class BottomNavigationWidget extends ConsumerStatefulWidget {
@@ -20,6 +21,19 @@ class _BottomNavigationWidgetState
     extends ConsumerState<BottomNavigationWidget> {
   @override
   Widget build(BuildContext context) {
+    final cartList =
+        ref.watch(cartControllerProvider.select((state) => state.products));
+
+    final sumQuantity = cartList.isNotEmpty
+        ? cartList
+            .map((e) => e.quantity)
+            .reduce((value, element) => value + element)
+        : 0;
+
+    final cartLabel = sumQuantity > 0
+        ? "${context.tr('cartLabel')} (${sumQuantity.toString()})"
+        : context.tr('cartLabel');
+
     return BottomNavigationBar(
       onTap: (value) {
         if (value == 1) {
@@ -50,7 +64,7 @@ class _BottomNavigationWidgetState
             Symbols.stars_rounded,
             size: 20,
           ),
-          label: context.tr('cartLabel'),
+          label: cartLabel,
         ),
       ],
     );
