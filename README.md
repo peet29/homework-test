@@ -8,5 +8,5 @@ This project use Flutter 3.24.3
    flutter pub get
    dart run build_runner watch -d
    ```
-
-2. you can start debug by press F5 in vscode
+2. create .env file from .env.example
+3. you can start debug by press F5 in vscode
